@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فتوى الشيخ أبي عمَّار ياسر العدني</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-bg: #f0f2f5;
-            --card-bg: #ffffff;
-            --accent: #1e3799; /* لون كحلي وقور يليق بالفتوى */
-            --text-color: #2f3640;
+            --primary: #1e3799;
+            --bg: #f4f7f6;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--main-bg);
-            background-image: radial-gradient(#dcdde1 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
+            background: var(--bg);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,97 +21,74 @@
             margin: 0;
         }
 
-        .fatwa-card {
-            background: var(--card-bg);
-            width: 90%;
-            max-width: 450px;
-            padding: 40px;
-            border-radius: 40px;
-            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.8);
-        }
-
-        .icon-box {
-            width: 70px;
-            height: 70px;
-            background: var(--main-bg);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 20px;
-            box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
-            color: var(--accent);
-            font-size: 30px;
-        }
-
-        h2 {
-            color: var(--text-color);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .author {
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 30px;
-            display: block;
-            font-size: 1rem;
-        }
-
-        /* تنسيق المشغل الصوتي المخصص */
-        .audio-container {
-            background: #f8f9fa;
-            padding: 20px;
+        .card {
+            background: white;
+            padding: 30px;
             border-radius: 25px;
-            margin-top: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        h2 { color: #2d3436; font-size: 1.2rem; margin-bottom: 20px; line-height: 1.6; }
+        
+        .author-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .author-info span { display: block; color: var(--primary); font-weight: bold; }
+
+        /* مشغل صوتي بسيط وأنيق */
+        .audio-wrapper {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         audio {
             width: 100%;
-            height: 45px;
-            filter: sepia(20%) saturate(70%) grayscale(1) contrast(90%) invert(12%); /* تلوين المشغل ليتناسب مع التصميم */
+            height: 35px;
         }
 
-        .download-btn {
-            margin-top: 25px;
-            display: inline-block;
-            padding: 12px 25px;
-            background: var(--accent);
-            color: white;
+        .btn-download {
+            margin-top: 20px;
+            display: block;
             text-decoration: none;
-            border-radius: 15px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(30, 55, 153, 0.2);
+            color: #777;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px rgba(30, 55, 153, 0.3);
-        }
+        .btn-download:hover { color: var(--primary); }
     </style>
 </head>
 <body>
 
-<div class="fatwa-card">
-    <div class="icon-box">🎙️</div>
-    
+<div class="card">
     <h2>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h2>
     
-    <span class="author">فضيلة الشيخ/ أبي عمَّار ياسر العدني</span>
+    <div class="author-info">
+        <small>أجاب عنه فضيلة الشيخ:</small>
+        <span>أبي عمَّار ياسر العدني</span>
+    </div>
 
-    <div class="audio-container">
-        <audio controls>
-            <source src="https://docs.google.com/uc?export=open&id=1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2" type="audio/mpeg">
+    <div class="audio-wrapper">
+        <audio controls preload="none">
+            <source src="https://docs.google.com/uc?export=download&id=1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2" type="audio/mpeg">
             متصفحك لا يدعم تشغيل الصوت.
         </audio>
     </div>
 
-    <a href="https://drive.google.com/uc?export=download&id=1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2" class="download-btn">
-        تحميل الفتوى (MP3)
+    <a href="https://drive.google.com/file/d/1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2/view" target="_blank" class="btn-download">
+        فتح في قوقل درايف (إذا لم يشتغل المشغل)
     </a>
 </div>
 
