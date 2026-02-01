@@ -3,94 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فتوى الشيخ أبي عمَّار ياسر العدني</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>فتوى شرعية | الشيخ أبي عمَّار ياسر العدني</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+
     <style>
         :root {
-            --primary: #1e3799;
-            --bg: #f4f7f6;
+            /* الألوان الرئيسية */
+            --primary-color: #0F4C75;  /* كحلي وقور */
+            --accent-color: #3282B8;   /* أزرق فاتح */
+            --bg-color: #dae1e7;
+            --card-bg: #ffffff;
+            
+            /* تخصيص ألوان مشغل Plyr لتتناسب مع الموقع */
+            --plyr-color-main: #0F4C75; 
+            --plyr-audio-controls-background: #f1f3f4;
+            --plyr-audio-control-color: #333;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: var(--bg);
+            background: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            border: 1px solid #eee;
-        }
-
-        h2 { color: #2d3436; font-size: 1.2rem; margin-bottom: 20px; line-height: 1.6; }
-        
-        .author-info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-        }
-
-        .author-info span { display: block; color: var(--primary); font-weight: bold; }
-
-        /* مشغل صوتي بسيط وأنيق */
-        .audio-wrapper {
-            background: #edf2f7;
-            padding: 15px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        audio {
+        .fatwa-card {
+            background: var(--card-bg);
             width: 100%;
-            height: 35px;
+            max-width: 500px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-download {
-            margin-top: 20px;
+        /* خط جمالي علوي */
+        .fatwa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background: rgba(50, 130, 184, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        h1 {
+            color: #1b262c;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .sheikh-name {
             display: block;
-            text-decoration: none;
-            color: #777;
-            font-size: 0.9rem;
-            transition: 0.3s;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            font-weight: 500;
         }
 
-        .btn-download:hover { color: var(--primary); }
+        /* حاوية المشغل */
+        .player-wrapper {
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* زر التحميل */
+        .download-link {
+            display: inline-block;
+            margin-top: 25px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: #888;
+            border-bottom: 1px dashed #ccc;
+            transition: color 0.3s;
+        }
+        
+        .download-link:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: #bbb;
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h2>
-    
-    <div class="author-info">
-        <small>أجاب عنه فضيلة الشيخ:</small>
-        <span>أبي عمَّار ياسر العدني</span>
+<div class="fatwa-card">
+    <div class="icon-wrapper">
+        🎙️
     </div>
 
-    <div class="audio-wrapper">
-        <audio controls preload="none">
-            <source src="https://docs.google.com/uc?export=download&id=1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2" type="audio/mpeg">
-            متصفحك لا يدعم تشغيل الصوت.
+    <h1>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h1>
+    <span class="sheikh-name">فضيلة الشيخ الفقيه: أبي عمَّار ياسر العدني</span>
+
+    <div class="player-wrapper">
+        <audio id="player" controls>
+            <source src="https://www.dropbox.com/scl/fi/neonlvbd1x8t5f5f5m81y/_-_-_-_-_-_-_.mp3?rlkey=1lg9tckdzroppth8m7zesqx9p&st=wigl8owl&raw=1" type="audio/mp3" />
         </audio>
     </div>
 
-    <a href="https://drive.google.com/file/d/1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2/view" target="_blank" class="btn-download">
-        فتح في قوقل درايف (إذا لم يشتغل المشغل)
+    <a href="https://www.dropbox.com/scl/fi/neonlvbd1x8t5f5f5m81y/_-_-_-_-_-_-_.mp3?rlkey=1lg9tckdzroppth8m7zesqx9p&st=wigl8owl&dl=1" class="download-link">
+         تحميل المادة الصوتية
     </a>
+    
+    <footer>
+        تصميم وبرمجة عصري
+    </footer>
 </div>
+
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>
+    // تفعيل المشغل الاحترافي
+    const player = new Plyr('#player', {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings'],
+        settings: ['speed'], // إضافة خيار التحكم بالسرعة
+        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    });
+</script>
 
 </body>
 </html>
