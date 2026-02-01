@@ -2,154 +2,387 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فتوى شرعية | الشيخ أبي عمَّار ياسر العدني</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>فتوى صوتية </title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-
     <style>
         :root {
-            /* الألوان الرئيسية */
-            --primary-color: #0F4C75;  /* كحلي وقور */
-            --accent-color: #3282B8;   /* أزرق فاتح */
-            --bg-color: #dae1e7;
-            --card-bg: #ffffff;
-            
-            /* تخصيص ألوان مشغل Plyr لتتناسب مع الموقع */
-            --plyr-color-main: #0F4C75; 
-            --plyr-audio-controls-background: #f1f3f4;
-            --plyr-audio-control-color: #333;
+            --bg-dark: #0a0e1a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-glow: #00f2fe; /* لون التوهج السماوي */
+            --accent-secondary: #4facfe;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a8b8;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Tajawal', sans-serif;
-            background: var(--bg-color);
+            background-color: var(--bg-dark);
+            /* خلفية متحركة متدرجة */
+            background-image: 
+                radial-gradient(circle at 20% 30%, #1a2a6c, transparent 50%),
+                radial-gradient(circle at 80% 70%, #b21f1f, transparent 50%),
+                linear-gradient(135deg, #0a0e1a 0%, #141e30 100%);
+            background-size: 200% 200%;
+            animation: auroraMove 20s ease infinite;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .fatwa-card {
-            background: var(--card-bg);
-            width: 100%;
-            max-width: 500px;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            text-align: center;
-            position: relative;
             overflow: hidden;
+            color: var(--text-primary);
         }
 
-        /* خط جمالي علوي */
-        .fatwa-card::before {
-            content: '';
+        @keyframes auroraMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* حاوية البطاقة الزجاجية */
+        .glass-card {
+            position: relative;
+            width: 90%;
+            max-width: 450px;
+            padding: 40px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* تفاصيل العنوان */
+        .badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-glow));
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.3);
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #a0a8b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sheikh {
+            color: var(--accent-glow);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* منطقة المشغل المتقدم */
+        .visualizer-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* الكانفاس الذي سترسم عليه الموجات */
+        #waveCanvas {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px var(--accent-glow));
         }
 
-        .icon-wrapper {
-            width: 60px;
-            height: 60px;
-            background: rgba(50, 130, 184, 0.1);
+        /* زر التشغيل المركزي */
+        .play-btn-circle {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-glow));
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 20px;
-            color: var(--primary-color);
-            font-size: 24px;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4), inset 0 0 10px rgba(255,255,255,0.2);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        h1 {
-            color: #1b262c;
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            line-height: 1.6;
-            font-weight: 700;
+        .play-btn-circle:active { transform: scale(0.95); }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-right: 25px solid white; /* لأنه عربي، اتجاه المثلث معكوس */
+            margin-right: -5px;
+            transition: all 0.2s ease;
         }
 
-        .sheikh-name {
-            display: block;
-            color: var(--accent-color);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-            font-weight: 500;
+        .card.playing .play-icon {
+            /* تحويل المثلث إلى علامة توقف */
+            width: 22px;
+            height: 22px;
+            border: none;
+            border-right: 7px solid white;
+            border-left: 7px solid white;
+            background: transparent;
+            margin-right: 0;
         }
 
-        /* حاوية المشغل */
-        .player-wrapper {
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        /* زر التحميل */
-        .download-link {
-            display: inline-block;
-            margin-top: 25px;
-            font-size: 0.85rem;
-            text-decoration: none;
-            color: #888;
-            border-bottom: 1px dashed #ccc;
-            transition: color 0.3s;
-        }
-        
-        .download-link:hover {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        footer {
+        /* شريط التقدم */
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
             margin-top: 30px;
-            font-size: 0.75rem;
-            color: #bbb;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
         }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-secondary), var(--accent-glow));
+            border-radius: 10px;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: width 0.1s linear;
+        }
+
+        .time-stamps {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+        }
+
+        /* تراكب لبدء التفاعل */
+        #startOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 14, 26, 0.9);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        #startOverlay h3 { margin-top: 20px; font-weight: 300; }
     </style>
 </head>
 <body>
 
-<div class="fatwa-card">
-    <div class="icon-wrapper">
-        🎙️
+<div id="startOverlay" onclick="initAudioContext()">
+    <div class="play-btn-circle" style="transform: scale(0.8);">
+        <div class="play-icon"></div>
     </div>
-
-    <h1>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h1>
-    <span class="sheikh-name">فضيلة الشيخ الفقيه: أبي عمَّار ياسر العدني</span>
-
-    <div class="player-wrapper">
-        <audio id="player" controls>
-            <source src="https://www.dropbox.com/scl/fi/neonlvbd1x8t5f5f5m81y/_-_-_-_-_-_-_.mp3?rlkey=1lg9tckdzroppth8m7zesqx9p&st=wigl8owl&raw=1" type="audio/mp3" />
-        </audio>
-    </div>
-
-    <a href="https://www.dropbox.com/scl/fi/neonlvbd1x8t5f5f5m81y/_-_-_-_-_-_-_.mp3?rlkey=1lg9tckdzroppth8m7zesqx9p&st=wigl8owl&dl=1" class="download-link">
-         تحميل المادة الصوتية
-    </a>
-    
-    <footer>
-        تصميم وبرمجة عصري
-    </footer>
+    <h3>اضغط في أي مكان للتشغيل</h3>
 </div>
 
-<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+
+<div class="glass-card" id="mainCard">
+    <span class="badge">فتوى مسموعة</span>
+    <h1>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h1>
+    <span class="sheikh">فضيلة الشيخ الفقيه/ أبي عمَّار ياسر العدني</span>
+
+    <div class="visualizer-container">
+        <canvas id="waveCanvas"></canvas>
+        <div class="play-btn-circle" id="playBtn">
+            <div class="play-icon"></div>
+        </div>
+    </div>
+
+    <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="time-stamps">
+        <span id="currentTime">0:00</span>
+        <span id="duration">تحميل...</span>
+    </div>
+
+    <audio id="audioSource" crossorigin="anonymous" src="https://www.dropbox.com/scl/fi/neonlvbd1x8t5f5f5m81y/_-_-_-_-_-_-_.mp3?rlkey=1lg9tckdzroppth8m7zesqx9p&st=wigl8owl&raw=1"></audio>
+</div>
+
+
 <script>
-    // تفعيل المشغل الاحترافي
-    const player = new Plyr('#player', {
-        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings'],
-        settings: ['speed'], // إضافة خيار التحكم بالسرعة
-        speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 2] }
+    const audio = document.getElementById('audioSource');
+    const playBtn = document.getElementById('playBtn');
+    const mainCard = document.getElementById('mainCard');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+    const canvas = document.getElementById('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const startOverlay = document.getElementById('startOverlay');
+
+    let isPlaying = false;
+    let audioContext, analyser, dataArray, source;
+    let animationId;
+
+    // إعداد الكانفاس
+    canvas.width = 300;
+    canvas.height = 300;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 65; // نصف قطر الدائرة الداخلية
+
+    // دالة تهيئة السياق الصوتي (يجب أن تستدعى بعد نقرة مستخدم)
+    function initAudioContext() {
+        startOverlay.style.opacity = '0';
+        setTimeout(() => { startOverlay.style.display = 'none'; }, 500);
+
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            source = audioContext.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioContext.destination);
+            
+            // إعدادات المحلل الصوتي
+            analyser.fftSize = 128; // حجم العينة (يحدد عدد الأعمدة في الموجة)
+            const bufferLength = analyser.frequencyBinCount;
+            dataArray = new Uint8Array(bufferLength);
+        }
+        togglePlay();
+    }
+
+    // التحكم في التشغيل والإيقاف
+    function togglePlay() {
+        if (isPlaying) {
+            audio.pause();
+            mainCard.classList.remove('playing');
+            cancelAnimationFrame(animationId);
+            // رسم دائرة ساكنة عند التوقف
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawStaticRing();
+        } else {
+            // التأكد من أن الـ AudioContext مفعل (لبعض المتصفحات)
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            audio.play();
+            mainCard.classList.add('playing');
+            animateWave();
+        }
+        isPlaying = !isPlaying;
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+
+    // دالة رسم الموجات المتحركة
+    function animateWave() {
+        animationId = requestAnimationFrame(animateWave);
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // رسم حلقة توهج خلفية
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius - 5, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(0, 242, 254, 0.1)';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        const bars = dataArray.length;
+        const step = (Math.PI * 2) / bars;
+
+        dataArray.forEach((value, i) => {
+            const barHeight = (value / 255) * 60; // ارتفاع الموجة بناء على شدة الصوت
+            const angle = i * step;
+            
+            // حساب إحداثيات بداية ونهاية كل خط في الدائرة
+            const x1 = centerX + Math.cos(angle) * radius;
+            const y1 = centerY + Math.sin(angle) * radius;
+            const x2 = centerX + Math.cos(angle) * (radius + barHeight);
+            const y2 = centerY + Math.sin(angle) * (radius + barHeight);
+
+            // رسم خط الموجة
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            // لون متدرج للموجة
+            const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
+            gradient.addColorStop(0, '#4facfe');
+            gradient.addColorStop(1, '#00f2fe');
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round'; // جعل أطراف الخطوط دائرية
+            ctx.stroke();
+        });
+    }
+
+    // رسم حلقة ساكنة عند التوقف
+    function drawStaticRing() {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius + 5, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(0, 242, 254, 0.3)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+    // رسمها عند التحميل
+    drawStaticRing();
+
+
+    // تحديث شريط التقدم والوقت
+    function updateProgress(e) {
+        const { duration, currentTime } = e.srcElement;
+        const progressPercent = (currentTime / duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+        currentTimeEl.innerText = formatTime(currentTime);
+        if(duration) durationEl.innerText = formatTime(duration);
+    }
+
+    function setProgress(e) {
+        const width = this.clientWidth;
+        const clickX = e.offsetX;
+        const duration = audio.duration;
+        audio.currentTime = (clickX / width) * duration;
+    }
+
+    function formatTime(seconds) {
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    audio.addEventListener('timeupdate', updateProgress);
+    progressContainer.addEventListener('click', setProgress);
+    audio.addEventListener('loadedmetadata', () => {
+        durationEl.innerText = formatTime(audio.duration);
     });
+    audio.addEventListener('ended', () => {
+        isPlaying = false;
+        mainCard.classList.remove('playing');
+        cancelAnimationFrame(animationId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawStaticRing();
+    });
+
 </script>
 
 </body>
