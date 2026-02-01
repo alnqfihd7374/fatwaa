@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فتوى شرعية | الشيخ أبي عمَّار ياسر العدني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #d1d8e0 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-gradient);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.5);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .speaker-box {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0,0,0,0.03);
+            border-radius: 15px;
+        }
+
+        .speaker-name {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .speaker-title {
+            display: block;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .audio-player-wrapper {
+            margin-top: 30px;
+        }
+
+        audio {
+            width: 100%;
+            height: 50px;
+            border-radius: 50px;
+            outline: none;
+        }
+
+        /* تخصيص بسيط لشكل المشغل في المتصفحات الحديثة */
+        audio::-webkit-media-controls-panel {
+            background-color: #fff;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* استجابة الجوال */
+        @media (max-width: 480px) {
+            .container { padding: 30px 20px; }
+            h1 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="badge">فتوى صوتية</div>
+    
+    <h1>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h1>
+
+    <div class="speaker-box">
+        <span class="speaker-name">أجاب عنه فضيلة الشيخ الفقيه:</span>
+        <span class="speaker-title">أبي عمَّار ياسر العدني - حفظه الله -</span>
+    </div>
+
+    <div class="audio-player-wrapper">
+        <audio controls>
+            <source src="https://drive.google.com/uc?export=download&id=1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2" type="audio/mpeg">
+            متصفحك لا يدعم مشغل الصوت.
+        </audio>
+    </div>
+
+    <footer>تم برمجة الموقع كنموذج للعرض العصري</footer>
+</div>
+
+</body>
+</html>
