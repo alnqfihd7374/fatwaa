@@ -10,13 +10,6 @@
             --primary-color: #2c3e50;
             --accent-color: #27ae60;
             --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #d1d8e0 100%);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
@@ -26,95 +19,80 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
             padding: 20px;
         }
 
         .container {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(15px);
             border-radius: 30px;
-            padding: 40px;
+            padding: 30px;
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.5);
             text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .container:hover {
-            transform: translateY(-5px);
+            border: 1px solid white;
         }
 
         .badge {
             background: var(--accent-color);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.8rem;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
         .speaker-box {
-            margin: 20px 0;
+            margin-bottom: 25px;
             padding: 15px;
-            background: rgba(0,0,0,0.03);
+            background: #f8f9fa;
             border-radius: 15px;
+            border-right: 4px solid var(--accent-color);
         }
 
-        .speaker-name {
-            color: #555;
-            font-weight: 500;
-        }
+        .speaker-name { color: #555; font-weight: 500; display: block; }
+        .speaker-title { color: var(--accent-color); font-size: 0.95rem; font-weight: bold; }
 
-        .speaker-title {
-            display: block;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        .audio-player-wrapper {
-            margin-top: 30px;
-        }
-
-        audio {
+        /* تنسيق مشغل قوقل */
+        .audio-wrapper {
+            position: relative;
             width: 100%;
-            height: 50px;
-            border-radius: 50px;
-            outline: none;
+            height: 150px; /* ارتفاع مناسب للمشغل */
+            overflow: hidden;
+            border-radius: 15px;
+            background: #000;
         }
 
-        /* تخصيص بسيط لشكل المشغل في المتصفحات الحديثة */
-        audio::-webkit-media-controls-panel {
-            background-color: #fff;
+        iframe {
+            position: absolute;
+            top: -50px; /* إزاحة لإخفاء شريط قوقل العلوي الزائد */
+            left: 0;
+            width: 100%;
+            height: 250px;
+            border: none;
         }
 
-        footer {
-            margin-top: 30px;
+        .instructions {
+            margin-top: 15px;
             font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* استجابة الجوال */
-        @media (max-width: 480px) {
-            .container { padding: 30px 20px; }
-            h1 { font-size: 1.2rem; }
+            color: #7f8c8d;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="badge">فتوى صوتية</div>
+    <div class="badge">إجابة صوتية</div>
     
     <h1>هل يضع المصلي في حال خروره إلى السجود يديه أم ركبتيه؟</h1>
 
@@ -123,14 +101,11 @@
         <span class="speaker-title">أبي عمَّار ياسر العدني - حفظه الله -</span>
     </div>
 
-    <div class="audio-player-wrapper">
-        <audio controls>
-            <source src="https://drive.google.com/uc?export=download&id=1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2" type="audio/mpeg">
-            متصفحك لا يدعم مشغل الصوت.
-        </audio>
+    <div class="audio-wrapper">
+        <iframe src="https://drive.google.com/file/d/1WIR2h37nY3gpDYvwO7F-tfBMV9eT5OS2/preview"></iframe>
     </div>
 
-    <footer>تم برمجة الموقع كنموذج للعرض العصري</footer>
+    <p class="instructions">اضغط على زر التشغيل في الأعلى للاستماع</p>
 </div>
 
 </body>
